@@ -23,3 +23,7 @@ for(let i = 0; i < row; i++){
         gridArray[i][j].classList.add('grid-box');
     }
 }
+
+// limit flexbox column to 16
+let flexBasisStr = (row * 100).toString().concat('px');
+document.getElementById('grid-container').style.width = flexBasisStr;

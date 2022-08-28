@@ -1,10 +1,15 @@
 body {
+    box-sizing: border-box;
     margin: 0;
-    padding: 0;
+    padding: 0; 
+}
+
+#grid-container {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .grid-box {
     width: 100px;
     height: 100px;
-    border: 1px solid black;
 }
