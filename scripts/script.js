@@ -1,37 +1,62 @@
-// create the grid using two-dimensional array
-// with a fixed 16 div for now
-const row = 16, column = 16;
+// listen for click even on button
+// ask the user for grid size
+document.getElementById('grid-size').addEventListener('click', () => {
+    let gridSize = parseInt(prompt("Enter Grid Size Between 10 & 100", 16));
 
-// initialize the array
-const gridArray = new Array(row);
-for(let i = 0; i < row; i++){
-    gridArray[i] = new Array(column);
-}
+    if(Number.isNaN(gridSize) || gridSize < 10 || gridSize > 100){
 
-// populate the grid with divs
-for(let i = 0; i < row; i++){
-    for(let j = 0; j < column; j++){
-        gridArray[i][j] = document.getElementById('grid-container')
-        .appendChild(document.createElement('div'));
+        alert("Wrong size, Try Again!");
+
+    } else {
+        // create the array
+        initializeGrid(gridSize);
+
+        // start drawing
+        drawPixels(gridSize);
+    }
+});
+
+// initialize the grid
+function initializeGrid(size){
+    // create the grid
+    const gridArray = new Array(size);
+
+    for(let i = 0; i < size; i++){
+        gridArray[i] = new Array(size);
     }
 
-}
+    // populate the grid with divs
+    for(let i = 0; i < size; i++){
+        for(let j = 0; j < size; j++){
+            gridArray[i][j] = document.getElementById('grid-container')
+            .appendChild(document.createElement('div'));
+        }
+    }
 
-// add a class to the array for testing
-for(let i = 0; i < row; i++){
-    for(let j = 0; j < column; j++){
-        gridArray[i][j].classList.add('grid-box');
+    // add a class to the array
+    for(let i = 0; i < size; i++){
+
+        for(let j = 0; j < size; j++){
+            gridArray[i][j].className = 'grid-box';
+        }
     }
 }
 
-// limit flexbox column to 16
-document.getElementById('grid-container').style.width = `${row * 100}px`;
+function drawPixels(size){
+    // grab all divs
+    let pixels = document.querySelectorAll('.grid-box');
 
-// add hover effect over divs
-let pixels = document.querySelectorAll('.grid-box');
+    // determine the size of div based on selected size
+    // takes 2 digits after the decimal point
+    let pixelSize = Math.round((600 /size ) * 100) / 100;
 
-pixels.forEach(pixel => {
-    pixel.addEventListener('mouseover', e => 
-        e.target.style.background = 'black');
-    }
-);
+    // set the new size of each pixel
+    pixels.forEach(pixel => {pixel.style = `width: ${pixelSize}px; height: ${pixelSize}px`});
+
+    // listen for mouse hover and change div color
+    pixels.forEach(pixel => {
+        pixel.addEventListener('mouseover', e => 
+            e.target.style.background = 'black');
+        }
+    );
+}
