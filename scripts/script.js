@@ -25,5 +25,13 @@ for(let i = 0; i < row; i++){
 }
 
 // limit flexbox column to 16
-let flexBasisStr = (row * 100).toString().concat('px');
-document.getElementById('grid-container').style.width = flexBasisStr;
+document.getElementById('grid-container').style.width = `${row * 100}px`;
+
+// add hover effect over divs
+let pixels = document.querySelectorAll('.grid-box');
+
+pixels.forEach(pixel => {
+    pixel.addEventListener('mouseover', e => 
+        e.target.style.background = 'black');
+    }
+);
