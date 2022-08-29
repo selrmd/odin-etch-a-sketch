@@ -7,11 +7,9 @@ document.querySelector('input').addEventListener('keypress', e => {
 
         if(Number.isNaN(gridSize) || gridSize < 10 || gridSize > 100){
 
-            // reset previous grid
-            document.getElementById('grid-container').innerHTML = '';
             // warn the user via the placeholder value
             e.target.value = '';
-            e.target.placeholder = 'wrong size!';
+            e.target.placeholder = 'try again!';
             // exit the input
             e.target.blur();
 
@@ -28,19 +26,32 @@ document.querySelector('input').addEventListener('keypress', e => {
             drawPixels(gridSize);
 
             // clear input
-            e.target.value = '';
-            e.target.placeholder = '10 to 100';
+            // e.target.value = '';
+            // e.target.placeholder = '10 to 100';
             e.target.blur();
         }
     }
 });
 
+// stop drawing when the input is focused
+document.querySelector('input').addEventListener('focus', e => {
+    // remove old value when entering a new one
+    e.target.value = '';
+
+    // reset canvas
+    document.getElementById('grid-container').innerHTML = '';
+});
+
 // erase the color but not the divs
 document.getElementById('erase-canvas').addEventListener('click', e => {
 
-    let pixels = document.querySelectorAll('.grid-box');
+    // reset all divs color to white to "erase" the canvas
+    document.querySelectorAll('.grid-box')
+        .forEach(pixel => {pixel.style = "color: white"});
 
-    pixels.forEach(pixel => {pixel.style = "color: white"});
+    // pass the current value of input to get the
+    // same previous grid size
+    drawPixels(parseInt(document.querySelector('input').value));
 });
 
 // get user input to change color from black to random
@@ -48,7 +59,7 @@ document.getElementById('color-choice').addEventListener('click', e => {
     let colorChoice = document.getElementById('color-choice');
 
     if(colorChoice.innerText === 'Black'){
-        colorChoice.innerText = 'Random';
+        colorChoice.innerText = 'Random Colors!';
     } else {
         colorChoice.innerText = 'Black';
     }
@@ -94,7 +105,7 @@ function drawPixels(size){
     // listen for mouse hover and change div color
     pixels.forEach(pixel => {
         pixel.addEventListener('mouseover', e => {
-            if(document.getElementById('color-choice').innerText === 'Black'){
+            if(document.getElementById('color-choice').innerText.includes('Random')){
                 e.target.style.background = 'black';
             } else {
                 e.target.style.background = getRandColors();
@@ -103,8 +114,8 @@ function drawPixels(size){
     });
 }
 
+// set a random RGB value
 function getRandColors(){
-
     let r = Math.floor(Math.random()*(255 + 1));
     let g = Math.floor(Math.random()*(255 + 1));
     let b = Math.floor(Math.random()*(255+ 1))

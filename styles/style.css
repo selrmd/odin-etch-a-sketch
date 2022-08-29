@@ -1,6 +1,7 @@
 body {
     box-sizing: border-box;
 
+    font-family: 'Suez One';
     height: 100vh;
     margin: 0;
     padding: 0;
@@ -8,6 +9,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+span {
+    font-family: 'Kaushan Script';
 }
 
 #etch-sketch-container {
@@ -58,11 +63,14 @@ button {
 }
 
 .knob {
+    font-family: 'Gochi Hand';
     display: flex;
     justify-content: center;
     align-items: center;
 
     border-style: none;
+
+    font-family: 'Suez One';
 
     flex-shrink: 0;
     width: 60px;
@@ -96,11 +104,14 @@ button {
 form{
     display: flex;
     color: white;
+    text-align: center;
 }
 
 input {
     width: 70px;
     margin-left: 10px;
+
+    font-family: 'Suez One';
 
     text-align: center;
 }
