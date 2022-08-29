@@ -1,13 +1,18 @@
 // listen for click even on button
 // ask the user for grid size
 document.getElementById('grid-size').addEventListener('click', () => {
-    let gridSize = parseInt(prompt("Enter Grid Size Between 10 & 100", 16));
+    let gridSize = parseInt(prompt("Enter Grid Size Between 10 & 100", '16'));
 
     if(Number.isNaN(gridSize) || gridSize < 10 || gridSize > 100){
 
         alert("Wrong size, Try Again!");
 
     } else {
+        // clear the grid container from previous generated divs
+        if(document.querySelectorAll('.grid-box').length !== 0){
+            document.getElementById('grid-container').innerHTML = '';
+        }
+
         // create the array
         initializeGrid(gridSize);
 
@@ -46,9 +51,11 @@ function drawPixels(size){
     // grab all divs
     let pixels = document.querySelectorAll('.grid-box');
 
+    console.log(pixels.length);
+
     // determine the size of div based on selected size
     // takes 2 digits after the decimal point
-    let pixelSize = Math.round((600 /size ) * 100) / 100;
+    let pixelSize= Math.round((350 /size ) * 100) / 100;
 
     // set the new size of each pixel
     pixels.forEach(pixel => {pixel.style = `width: ${pixelSize}px; height: ${pixelSize}px`});
