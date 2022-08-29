@@ -1,23 +1,56 @@
-// listen for click even on button
-// ask the user for grid size
-document.getElementById('grid-size').addEventListener('click', () => {
-    let gridSize = parseInt(prompt("Enter Grid Size Between 10 & 100", '16'));
+// get the grid size from user
+document.querySelector('input').addEventListener('keypress', e => {
+    if(e.key === 'Enter'){
+        e.preventDefault();
 
-    if(Number.isNaN(gridSize) || gridSize < 10 || gridSize > 100){
+        let gridSize = parseInt(e.target.value);
 
-        alert("Wrong size, Try Again!");
+        if(Number.isNaN(gridSize) || gridSize < 10 || gridSize > 100){
 
-    } else {
-        // clear the grid container from previous generated divs
-        if(document.querySelectorAll('.grid-box').length !== 0){
+            // reset previous grid
             document.getElementById('grid-container').innerHTML = '';
+            // warn the user via the placeholder value
+            e.target.value = '';
+            e.target.placeholder = 'wrong size!';
+            // exit the input
+            e.target.blur();
+
+        } else {
+            // clear the grid container from previous generated divs
+            if(document.querySelectorAll('.grid-box').length !== 0){
+                document.getElementById('grid-container').innerHTML = '';
+            }
+
+            // create the array
+            initializeGrid(gridSize);
+
+            // start drawing
+            drawPixels(gridSize);
+
+            // clear input
+            e.target.value = '';
+            e.target.placeholder = '10 to 100';
+            e.target.blur();
         }
+    }
+});
 
-        // create the array
-        initializeGrid(gridSize);
+// erase the color but not the divs
+document.getElementById('erase-canvas').addEventListener('click', e => {
 
-        // start drawing
-        drawPixels(gridSize);
+    let pixels = document.querySelectorAll('.grid-box');
+
+    pixels.forEach(pixel => {pixel.style = "color: white"});
+});
+
+// get user input to change color from black to random
+document.getElementById('color-choice').addEventListener('click', e => {
+    let colorChoice = document.getElementById('color-choice');
+
+    if(colorChoice.innerText === 'Black'){
+        colorChoice.innerText = 'Random';
+    } else {
+        colorChoice.innerText = 'Black';
     }
 });
 
@@ -51,8 +84,6 @@ function drawPixels(size){
     // grab all divs
     let pixels = document.querySelectorAll('.grid-box');
 
-    console.log(pixels.length);
-
     // determine the size of div based on selected size
     // takes 2 digits after the decimal point
     let pixelSize= Math.round((350 /size ) * 100) / 100;
@@ -62,8 +93,21 @@ function drawPixels(size){
 
     // listen for mouse hover and change div color
     pixels.forEach(pixel => {
-        pixel.addEventListener('mouseover', e => 
-            e.target.style.background = 'black');
-        }
-    );
+        pixel.addEventListener('mouseover', e => {
+            if(document.getElementById('color-choice').innerText === 'Black'){
+                e.target.style.background = 'black';
+            } else {
+                e.target.style.background = getRandColors();
+            }
+        });
+    });
+}
+
+function getRandColors(){
+
+    let r = Math.floor(Math.random()*(255 + 1));
+    let g = Math.floor(Math.random()*(255 + 1));
+    let b = Math.floor(Math.random()*(255+ 1))
+
+    return `rgb(${r}, ${g}, ${b})`;
 }

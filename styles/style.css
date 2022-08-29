@@ -47,9 +47,11 @@ button {
 
 #knob-container {
     align-self: flex-end;
-    display: flex;
-    width: inherit;
+    display: inline-flex;
+    width: 450px;
     height: 70px;
+
+    margin: 0;
 
     justify-content: space-between;
     align-items: center;
@@ -58,15 +60,23 @@ button {
 .knob {
     display: flex;
     justify-content: center;
+    align-items: center;
+
+    border-style: none;
+
+    flex-shrink: 0;
     width: 60px;
     height: 60px;
 
     margin: 0 30px;
 
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border-radius: 30px;
 }
 
+.knob:active{
+    background-color: aqua;
+}
 #etch-sketch-text {
     display: flex;
     align-items: center;
@@ -83,6 +93,18 @@ button {
     margin: 0 10px;
 }
 
-#knob-container p {
-    margin-top: 20px;
+form{
+    display: flex;
+    color: white;
+}
+
+input {
+    width: 70px;
+    margin-left: 10px;
+
+    text-align: center;
+}
+
+input:focus::placeholder {
+    color: transparent;
 }

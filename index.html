@@ -11,12 +11,19 @@
 <body>
     <div id="etch-sketch-container">
         <div id="etch-sketch-text">MAGIC <span>Etch-A-Sketch</span> SCREEN</div>
+
         <div id="grid-container"></div>
 
         <div id="knob-container">
-            <div id="right" class="knob"><p>Color</p></div>
-            <button id="grid-size">Grid</button>
-            <div id="left" class="knob"><p>Random!</p></div>
+            <button id="erase-canvas" class="knob">Erase</button>
+
+            <form>
+                <label>Grid Density: </label>
+                <input type="text" placeholder="10 to 100">
+            </form>
+
+            <button id="color-choice" class="knob">Black</button>
+
         </div>
     </div>
     
