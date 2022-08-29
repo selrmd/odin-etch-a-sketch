@@ -1,121 +1,134 @@
 body {
-    box-sizing: border-box;
-
-    font-family: 'Suez One';
     height: 100vh;
-    margin: 0;
-    padding: 0;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Suez One';
+    
+    background-color: #437F97;
 }
 
-span {
-    font-family: 'Kaushan Script';
-}
-
+/* sketch toy */
 #etch-sketch-container {
-    box-sizing: border-box;
-
     width: 450px;
     height: 500px;
 
     display: flex;
     flex-direction: column;
-
     align-items: center;
 
     border-radius: 32px;
 
-    background-color: red;
-    
+    background-color: #FD151B;
 }
 
+/* title area */
+#etch-sketch-text {
+    height: 65px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+
+    padding: 15px;
+
+    color: #FFB30F;
+    font-size: 20px;
+}
+
+#etch-sketch-text span {
+    padding-left: 3px;
+    padding-right: 12px;
+
+    font-family: 'Kaushan Script';
+    font-size: 32px;
+    font-weight: 700;
+
+}
+
+/* canvas */
 #grid-container {
     width: 350px;
     height: 350px;
+
     display: flex;
     flex-wrap: wrap;
-
     justify-content: center;
     align-self: center;
 
-    background-color: white;
+    margin-bottom: 8px;
+
+    background-color: #ecf0f1;
 }
 
-button {
-    width: 150px;
-    flex-grow: 0;
-    color: red;
-}
-
+/* control area */
 #knob-container {
-    align-self: flex-end;
-    display: inline-flex;
     width: 450px;
     height: 70px;
 
-    margin: 0;
-
+    display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .knob {
-    font-family: 'Gochi Hand';
+    width: 70px;
+    height: 70px;
+
     display: flex;
     justify-content: center;
     align-items: center;
 
-    border-style: none;
-
-    font-family: 'Suez One';
-
     flex-shrink: 0;
-    width: 60px;
-    height: 60px;
 
     margin: 0 30px;
 
-    background-color: rgb(255, 255, 255);
-    border-radius: 30px;
+    border-style: none;
+    border-radius: 35px;
+
+    font-family: 'Suez One';
+    background-color: #ecf0f1;
+
 }
 
-.knob:active{
-    background-color: aqua;
+.knob:active {
+    color: #ecf0f1;
+    background-color: #FFB30F;
 }
-#etch-sketch-text {
-    display: flex;
-    align-items: center;
 
+/* user input */
+form {
     box-sizing: border-box;
-    padding: 15px;
-    color: white;
-    font-size: 20px;
-    height: 70px;
-}
-
-#etch-sketch-text span {
-    font-size: 32px;
-    margin: 0 10px;
-}
-
-form{
-    display: flex;
-    color: white;
+    color: #FFB30F;
     text-align: center;
+
+
 }
 
 input {
-    width: 70px;
-    margin-left: 10px;
+    width: 80px;
+    box-sizing: border-box;
+
+    margin-top: 5px;
+
+    border: 3px solid #ecf0f1;
+    border-radius: 4px;
 
     font-family: 'Suez One';
-
     text-align: center;
 }
 
 input:focus::placeholder {
     color: transparent;
+}
+
+input:focus {
+    outline: none;
+    border: 3px solid #FFB30F;
+    border-radius: 4px;
 }

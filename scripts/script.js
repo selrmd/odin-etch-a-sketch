@@ -3,7 +3,7 @@ document.querySelector('input').addEventListener('keypress', e => {
     if(e.key === 'Enter'){
         e.preventDefault();
 
-        let gridSize = parseInt(e.target.value);
+        let gridSize = Number(e.target.value);
 
         if(Number.isNaN(gridSize) || gridSize < 10 || gridSize > 100){
 
@@ -14,6 +14,7 @@ document.querySelector('input').addEventListener('keypress', e => {
             e.target.blur();
 
         } else {
+
             // clear the grid container from previous generated divs
             if(document.querySelectorAll('.grid-box').length !== 0){
                 document.getElementById('grid-container').innerHTML = '';
