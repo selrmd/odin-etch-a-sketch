@@ -104,12 +104,19 @@ function drawPixels(size){
     pixels.forEach(pixel => {pixel.style = `width: ${pixelSize}px; height: ${pixelSize}px`});
 
     // listen for mouse hover and change div color
+    let count = 0;
     pixels.forEach(pixel => {
         pixel.addEventListener('mouseover', e => {
             if(document.getElementById('color-choice').innerText.includes('Random')){
                 e.target.style.background = 'black';
             } else {
-                e.target.style.background = getRandColors();
+                count++;
+
+                if(count % 10 === 0){
+                    e.target.style.background = 'black';
+                } else {
+                    e.target.style.background = getRandColors();
+                }
             }
         });
     });
