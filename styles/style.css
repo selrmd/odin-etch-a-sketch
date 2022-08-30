@@ -61,16 +61,17 @@ body {
     justify-content: center;
     align-self: center;
 
-    margin-bottom: 8px;
-
     background-color: #ecf0f1;
 }
 
 /* control area */
 #knob-container {
+    box-sizing: border-box;
     width: 450px;
-    height: 70px;
+    height: 80px;
 
+    padding: 10px 0;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -102,16 +103,35 @@ body {
 }
 
 /* user input */
-form {
-    box-sizing: border-box;
-    color: #FFB30F;
-    text-align: center;
+/* title, input and button */
+#form-container {
+    width: 200px;
 
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+/* input and button */
+#input-container {
+    width: 150px;
+
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+/* input title */
+#form-container p {
+    color: #FFB30F;
+    margin: 0;
+    text-align: center;
+}
+
+/* input field*/
 input {
     width: 80px;
+    height: 20px;
     box-sizing: border-box;
 
     margin-top: 5px;
@@ -131,4 +151,26 @@ input:focus {
     outline: none;
     border: 3px solid #FFB30F;
     border-radius: 4px;
+}
+
+/* ok button */
+#form-container button {
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+
+    font-family: 'Suez One';
+    text-align: center;
+
+    border-style: none;
+    margin-left: 10px;
+    padding: 0;
+
+    color: #ecf0f1;
+    background-color: #FFB30F;
+}
+
+#form-container button:active {
+    color: black;
+    background-color: #ecf0f1;
 }
