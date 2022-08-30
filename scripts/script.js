@@ -13,6 +13,9 @@ function getGridDensity(){
         // exit the input
         gridInput.blur();
     } else {
+        // when error fixed, restore default hint
+        gridInput.placeholder = '20'
+
         // create the array
         initializeGrid(gridSize);
 
