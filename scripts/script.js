@@ -13,7 +13,13 @@ function getGridDensity(){
         // exit the input
         gridInput.blur();
     } else {
-        // when error fixed, restore default hint
+        // clear the grid container from previous generated divs
+        if(document.querySelectorAll('.grid-box').length !== 0){
+            document.getElementById('grid-container').innerHTML = '';
+        }
+
+        // if user input fixed, remove "try again"
+        // from hint when input is blurred
         gridInput.placeholder = '20'
 
         // create the array
@@ -61,7 +67,7 @@ function drawPixels(size){
 
     // determine the size of pixel based on density
     // takes 2 digits after the decimal point
-    let pixelSize= Math.round((350 /size ) * 100) / 100;
+    let pixelSize= Math.round((650 /size ) * 100) / 100;
 
     // set the new size of each pixel
     pixels.forEach(pixel => pixel.style = `width: ${pixelSize}px; height: ${pixelSize}px`);
