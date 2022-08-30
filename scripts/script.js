@@ -1,38 +1,88 @@
-// get the grid size from user
-document.querySelector('input').addEventListener('keypress', e => {
+// listen for user input
+
+// lister for pressing Enter key
+document.getElementById('grid-density').addEventListener('keypress', e => 
+{
     if(e.key === 'Enter'){
         e.preventDefault();
 
-        let gridSize = Number(e.target.value);
-
-        if(Number.isNaN(gridSize) || gridSize < 10 || gridSize > 100){
-
-            // warn the user via the placeholder value
-            e.target.value = '';
-            e.target.placeholder = 'try again!';
-            // exit the input
-            e.target.blur();
-
-        } else {
-
-            // clear the grid container from previous generated divs
-            if(document.querySelectorAll('.grid-box').length !== 0){
-                document.getElementById('grid-container').innerHTML = '';
-            }
-
-            // create the array
-            initializeGrid(gridSize);
-
-            // start drawing
-            drawPixels(gridSize);
-
-            // clear input
-            // e.target.value = '';
-            // e.target.placeholder = '10 to 100';
-            e.target.blur();
-        }
+        getGridDensity();
     }
 });
+
+// listen for clicking the OK button
+document.getElementById('ok-button').addEventListener('click', () => getGridDensity());
+
+// get the grid density from the user
+function getGridDensity(){
+    let gridInput = document.getElementById('grid-density');
+    let gridSize = Number(gridInput.value);
+
+    // check if user input is actually a number AND in range
+    if(Number.isNaN(gridSize) || gridSize < 10 || gridSize > 100){
+
+        // warn the user via the placeholder value
+        gridInput.value = '';
+        gridInput.placeholder = 'try again!';
+
+        // exit the input
+        gridInput.blur();
+    } else {
+        // clear the grid container from previous generated divs
+        if(document.querySelectorAll('.grid-box').length !== 0){
+            document.getElementById('grid-container').innerHTML = '';
+        }
+
+        // create the array
+        initializeGrid(gridSize);
+
+        console.log(gridSize);
+
+        // unfocus from input
+        gridInput.blur();
+
+        // start drawing
+        drawPixels(gridSize);
+    }
+}
+
+// PREVIOUS CODE //
+
+// get the grid size from user
+// document.querySelector('input').addEventListener('keypress', e => {
+//     if(e.key === 'Enter'){
+//         e.preventDefault();
+
+//         let gridSize = Number(e.target.value);
+
+//         if(Number.isNaN(gridSize) || gridSize < 10 || gridSize > 100){
+
+//             // warn the user via the placeholder value
+//             e.target.value = '';
+//             e.target.placeholder = 'try again!';
+//             // exit the input
+//             e.target.blur();
+
+//         } else {
+
+//             // clear the grid container from previous generated divs
+//             if(document.querySelectorAll('.grid-box').length !== 0){
+//                 document.getElementById('grid-container').innerHTML = '';
+//             }
+
+//             // create the array
+//             initializeGrid(gridSize);
+
+//             // start drawing
+//             drawPixels(gridSize);
+
+//             // clear input
+//             // e.target.value = '';
+//             // e.target.placeholder = '10 to 100';
+//             e.target.blur();
+//         }
+//     }
+// });
 
 // stop drawing when the input is focused
 document.querySelector('input').addEventListener('focus', e => {
