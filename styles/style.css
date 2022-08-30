@@ -48,7 +48,6 @@ body {
     font-family: 'Kaushan Script';
     font-size: 32px;
     font-weight: 700;
-
 }
 
 /* canvas */
@@ -70,11 +69,11 @@ body {
     width: 450px;
     height: 80px;
 
-    padding: 10px 0;
-    
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    padding: 10px 0;
 }
 
 .knob {
@@ -154,7 +153,7 @@ input:focus {
 }
 
 /* ok button */
-#form-container button {
+#ok-button {
     width: 26px;
     height: 26px;
     border-radius: 13px;
@@ -170,7 +169,7 @@ input:focus {
     background-color: #FFB30F;
 }
 
-#form-container button:active {
+#ok-button:active {
     color: black;
     background-color: #ecf0f1;
 }
